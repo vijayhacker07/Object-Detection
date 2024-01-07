@@ -1,0 +1,38 @@
+import random
+
+class Car:
+    def __init__(self, name, speed):
+        self.name = name
+        self.speed = speed
+
+    def accelerate(self):
+        return self.speed + random.randint(1, 5)
+
+def race(car1, car2, distance):
+    print(f"Race between {car1.name} and {car2.name} begins!")
+
+    while distance > 0:
+        car1_speed = car1.accelerate()
+        car2_speed = car2.accelerate()
+
+        distance -= car1_speed
+        print(f"{car1.name} moves {car1_speed} units. {car2.name} is {distance} units away.")
+
+        if distance <= 0:
+            print(f"{car1.name} wins the race!")
+            break
+
+        distance -= car2_speed
+        print(f"{car2.name} moves {car2_speed} units. {car1.name} is {distance} units away.")
+
+        if distance <= 0:
+            print(f"{car2.name} wins the race!")
+            break
+
+if __name__ == "__main__":
+    car1 = Car("Speedster", 10)
+    car2 = Car("Turbocharged", 12)
+
+    race_distance = 100
+
+    race(car1, car2, race_distance)
